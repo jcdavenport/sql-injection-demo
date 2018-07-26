@@ -1,0 +1,36 @@
+#start postgresql database on localhost using a docker container.
+#can optionally use your preferred sql database, just make sure 
+#it is accessible from localhost:5432
+docker run -it --rm --name pgsdb1 \
+           -p 5432:5432 \
+           -v pgsdb1:/bitnami \
+           -e POSTGRESQL_PASSWORD=toor \
+           -d bitnami/postgresql:latest
+
+
+#access postgresql command line
+psql -h localhost -p 5432 -U postgres
+
+
+#create the database
+postgres$ CREATE DATABASE authdb;
+
+
+#create a table to hold data columns
+postgres$ CREATE TABLE authtable (username varchar(8), password varchar(32));
+#output: CREATE TABLE
+
+
+#insert authorized user and password MD5 hash value
+#(optional)postgres$ INSERT INTO authtable (username, password) values ('dbuser1', '404196c48f9882f2314006e7e3efcf17');
+postgres$ INSERT INTO authtable (username, password) values ('dbuser1', 'pa$$word1');
+#output: INSERT 0 1
+
+
+#check if data was stored
+postgres$ SELECT * from authtable;
+
+
+#delete the table
+#postgres$ DROP TABLE authtable;
+#output: DROP TABLE
