@@ -1,0 +1,12 @@
+postgres=# \dt
+           List of relations
+ Schema |   Name    | Type  |  Owner   
+--------+-----------+-------+----------
+ public | authtable | table | postgres
+(1 row)
+
+postgres=# SELECT * FROM authtable;
+ username |             password             
+----------+----------------------------------
+ dbuser1  | 404196c48f9882f2314006e7e3efcf17
+(1 row)
